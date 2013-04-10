@@ -5,7 +5,6 @@ import ca.tark.barconnect.Request;
 import ca.tark.barconnect.RouteResponse;
 import ca.tark.barconnect.controller.EstablishmentController;
 import ca.tark.barconnect.model.Establishment;
-import ca.tark.barconnect.utils.RouterUtils;
 
 public class EstablishmentRoute implements IRoute {
 

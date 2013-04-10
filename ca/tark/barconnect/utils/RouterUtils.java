@@ -49,4 +49,22 @@ public final class RouterUtils {
 
 		return sb.toString();
 	}
+	
+	public static String getHttpCodeDescription(int httpCode) {
+		String title = "";
+		
+		switch(httpCode) {
+		case 302:
+			title = "FOUND";
+			break;
+		case 400:
+			title = "BAD REQUEST";
+			break;
+		case 404:
+			title = "NOT FOUND";
+			break;
+		}
+		
+		return "" + httpCode + ": " + title;
+	}
 }

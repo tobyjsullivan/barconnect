@@ -1,5 +1,8 @@
 package ca.tark.barconnect;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ca.tark.barconnect.utils.RouterUtils;
 
 public class Request {
@@ -25,6 +28,23 @@ public class Request {
 	
 	public String getQuery() {
 		return this._query;
+	}
+	
+	public Map<String,String> getQueryMap() {
+		Map<String,String> retVal = new HashMap<String, String>();
+		if(this._query == null) {
+			// Empty
+			return retVal;
+		}
+		
+		String[] pairs = this._query.split("[&]");
+		
+		for(String curPair : pairs) {
+			String[] set = curPair.split("[=]", 2);
+			retVal.put(set[0], set[1]);
+		}
+		
+		return retVal;
 	}
 	
 	public String getData() {
