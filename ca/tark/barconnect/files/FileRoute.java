@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import ca.tark.barconnect.IRoute;
 import ca.tark.barconnect.Request;
@@ -58,7 +60,30 @@ public class FileRoute implements IRoute {
 		}
 
 		System.out.println("File found.");
-		return new RouteResponse(200, sb.toString());
+		
+		String mimeType = determineMimeType(filename);
+
+		Map<String, String> headers = new HashMap<String, String>();
+		if(mimeType != null) {
+			headers.put("Content-type", mimeType);
+		}
+		
+		return new RouteResponse(200, sb.toString(), headers);
+	}
+	
+	private static String determineMimeType(String filename) {
+		int dot = filename.lastIndexOf('.');
+		String ext = filename.substring(dot + 1);
+		
+		if(ext.equals("css")) {
+			return "text/css";
+		} else if (ext.equals("html")) {
+			return "text/html";
+		} else if (ext.equals("js")) {
+			return "text/javascript";
+		}
+		
+		return "text/plain";
 	}
 
 }

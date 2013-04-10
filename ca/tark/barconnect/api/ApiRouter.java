@@ -5,9 +5,12 @@ import ca.tark.barconnect.Request;
 
 public class ApiRouter {
 	public static IRoute determineRoute(Request request) {
-		if(request.getSplitPath()[1].equals("establishments")) {
-			
+		String controllerPath = request.getSplitPath()[1];
+		
+		if(controllerPath.equals("establishment")) {
 			return new EstablishmentRoute();
+		} else if(controllerPath.equals("connection")) {
+			return new ConnectionRoute();
 		}
 		
 		return null;

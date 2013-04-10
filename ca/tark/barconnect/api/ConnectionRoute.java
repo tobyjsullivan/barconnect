@@ -3,19 +3,19 @@ package ca.tark.barconnect.api;
 import ca.tark.barconnect.IRoute;
 import ca.tark.barconnect.Request;
 import ca.tark.barconnect.RouteResponse;
-import ca.tark.barconnect.controller.EstablishmentController;
-import ca.tark.barconnect.model.Establishment;
+import ca.tark.barconnect.controller.ConnectionController;
+import ca.tark.barconnect.model.Connection;
 
-public class EstablishmentRoute implements IRoute {
+public class ConnectionRoute implements IRoute {
 
 	@Override
 	public RouteResponse handle(Request request) {
 		String[] pathParts = request.getSplitPath();
 		
 		if(pathParts.length > 2) {
-			Establishment est = EstablishmentController.findById(pathParts[2]);
+			Connection conn = ConnectionController.findByToken(pathParts[2]);
 			
-			RouteResponse resp = new RouteJsonResponse(EstablishmentController.viewJson(est));
+			RouteResponse resp = new RouteJsonResponse(ConnectionController.viewJson(conn));
 			return resp;
 		}
 		
