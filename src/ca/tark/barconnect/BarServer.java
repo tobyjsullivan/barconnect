@@ -9,7 +9,7 @@ public class BarServer {
 	public static void main(String[] args) throws IOException {
 		int port = 8080;
 		
-		System.out.println("Configuring server...");
+		System.out.println("Starting server...");
 		
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 		server.createContext("/", new RequestHandler());
