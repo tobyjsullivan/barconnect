@@ -3,3 +3,4 @@
 .project
 .settings
 build
+src/ca/tark/barconnect/config/Configuration.java
